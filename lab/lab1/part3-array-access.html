@@ -74,10 +74,17 @@
     Start code
 
     ===================== */
+    var restaurantData = [
+      [39.950559, -75.169216, "Luke's Lobster"],
+      [39.956390, -75.206730, "Chili Szechuan"],
+      [39.948290, -75.162453, "Green Egg Cafe"],
+      [39.949723, -75.187161, "I don't know"],
+      [39.951212, -75.171238, "I don't know, too"]
+  ];
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+    for (var i = 0; i < restaurantData.length; i++ ){
+      L.marker([restaurantData[i][0],restaurantData[i][1]]).addTo(map).bindPopup(restaurantData[i][2]).openPopup();
+    }
 
     /* =====================
 

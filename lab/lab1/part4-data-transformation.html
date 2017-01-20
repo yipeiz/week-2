@@ -63,8 +63,7 @@
 
     ===================== */
 
-    var data = bikeArrayClean;
-
+    var data = bikeArrayDirty;
     /* =====================
 
     Start code to filter data
@@ -73,9 +72,11 @@
     var dataFiltered = [];
 
     for (var i = 0; i < data.length; i++){
-      if (data[i][3] > 20){
+      if (data[i].length > 3){
+      if (data[i][3].replace(/\D/g,'') > 20){
         dataFiltered.push(data[i]);
       }
+    }
     }
 
     /* =====================
@@ -97,16 +98,16 @@
       ext: 'png'
     }).addTo(map);
 
-    for (var i = 0; i < dataFiltered.length; i++ ){
-      L.marker([dataFiltered[i][0],dataFiltered[i][1]]).addTo(map).bindPopup(dataFiltered[i][2]).openPopup();
-    }
+
     /* =====================
 
     Start code to add markers to map
 
     ===================== */
 
-
+    for (var i = 0; i < dataFiltered.length; i++ ){
+      L.marker([parseFloat(dataFiltered[i][1]),parseFloat(dataFiltered[i][0])]).bindPopup(dataFiltered[i][2]).openPopup().addTo(map);
+    }
 
     /* =====================
 
