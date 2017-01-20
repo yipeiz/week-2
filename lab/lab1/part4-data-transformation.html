@@ -70,8 +70,13 @@
     Start code to filter data
 
     ===================== */
+    var dataFiltered = [];
 
-
+    for (var i = 0; i < data.length; i++){
+      if (data[i][3] > 20){
+        dataFiltered.push(data[i]);
+      }
+    }
 
     /* =====================
 
@@ -92,6 +97,9 @@
       ext: 'png'
     }).addTo(map);
 
+    for (var i = 0; i < dataFiltered.length; i++ ){
+      L.marker([dataFiltered[i][0],dataFiltered[i][1]]).addTo(map).bindPopup(dataFiltered[i][2]).openPopup();
+    }
     /* =====================
 
     Start code to add markers to map
