@@ -66,9 +66,20 @@
       //  works! You should see 'Success: true' if all goes well.
 
       /* Define your function here */
-
-      for (var i = 0; i < theArray.length, i++) { /* Inside the loop*/ }
-
+      function accumulation(element){
+        if (typeof element === 'string') {         // String case
+          return  element.length;
+        } else if (typeof element === 'number') {  // Number case
+          return  element;
+        } else {                                      // Otherwise
+          console.log("Not sure how to proceed with value:", element);
+          return 0;
+        }
+      }
+      for (var i = 0; i < theArray.length; i++) {
+        yourSum += accumulation(theArray[i]);
+      }
+      console.log(yourSum);
       /* =====================
 
       End code

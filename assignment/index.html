@@ -48,17 +48,42 @@
        Remember: functions are meant to facilitate code comprehension and reuse. Try to use them to organize your code.
       ===================== */
 
-
       /* =====================
 
       Start code
 
       ===================== */
 
+      var properties = Object.keys(healthCenters[0]);
+      var hcarray = [properties];
+      for (var i = 0; i < healthCenters.length; i++){
+        var temp = [];
+        for (var key in properties){
+          if (healthCenters[i].hasOwnProperty(properties[key])){
+            temp.push(healthCenters[i][properties[key]]);
+          }
+        };
+        hcarray.push(temp);
+      }
+      console.log(hcarray);
+
       var jsonToCsv = function(json) { console.log(json); };
 
+      var myIcon = L.icon({
+        iconUrl: 'stomatology-512.png',
+        iconSize: [40, 40],
+        iconAnchor:[20, 40]
+    });
 
-      var addMarkers = function(map) {};
+      var addMarkers = function(map) {
+        for (var i = 1; i < hcarray.length; i++){
+          if (hcarray[i][8] === "N/A"){
+            L.marker([hcarray[i][1], hcarray[i][0]]).addTo(map).bindPopup(hcarray[i][3]);
+          }else{
+            L.marker([hcarray[i][1], hcarray[i][0]],{icon: myIcon} ).addTo(map).bindPopup(hcarray[i][3]);
+          }
+      }
+      };
 
       /* =====================
 
